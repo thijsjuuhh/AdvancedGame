@@ -1,6 +1,8 @@
 package com.thijsjuuhh.game;
 
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 import com.thijsjuuhh.game.display.Window;
 
@@ -8,15 +10,17 @@ public class Game implements Runnable {
 
 	public static boolean running = false;
 	public static Thread thread;
-	JFrame frame;
+
+	public int width = Reference.GameNames.width, height = Reference.GameNames.height;
 
 	public static void main(String[] args) {
-		System.out.println("System running");
+		new Game();
 	}
 
 	public Game() {
 		thread = new Thread(this, Reference.GameNames.gameName);
-		frame = new Window(Reference.GameNames.title);
+		new Window(Reference.GameNames.title, Reference.GameNames.width, Reference.GameNames.height);
+		start();
 	}
 
 	public synchronized void start() {
@@ -35,8 +39,47 @@ public class Game implements Runnable {
 
 	@Override
 	public void run() {
-		while (running)
-			System.out.println("System running");
+		long lastTime = System.nanoTime();
+		double delta = 0;
+		double ns = 1000000000.0 / 60.0;
+		long timer = System.currentTimeMillis();
+		int frames = 0;
+		int updates = 0;
+		while (running) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			if (delta >= 1) {
+				update();
+				updates++;
+				delta--;
+			}
+			render();
+			frames++;
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.println(updates + "ups, " + frames + " fps");
+				updates = 0;
+				frames = 0;
+			}
+
+		}
 	}
 
+	private void update() {
+	}
+
+	private void render() {
+		BufferStrategy bs = Window.getFrame().getBufferStrategy();
+		if (bs == null) {
+			Window.getFrame().createBufferStrategy(3);
+			return;
+		}
+
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, width, height);
+		g.dispose();
+		bs.show();
+	}
 }
