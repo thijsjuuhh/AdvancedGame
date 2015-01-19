@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import com.thijsjuuhh.game.display.Window;
+import com.thijsjuuhh.game.texture.Texture;
 
 public class Game implements Runnable {
 
@@ -79,6 +80,9 @@ public class Game implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
+
+		g.drawImage(Texture.getTexture("/textures/basic.png"), 0, 0, null);
+
 		g.dispose();
 		bs.show();
 	}
