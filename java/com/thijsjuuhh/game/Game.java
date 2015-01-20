@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import com.thijsjuuhh.game.display.Window;
+import com.thijsjuuhh.game.reference.Reference;
 import com.thijsjuuhh.game.texture.Texture;
 
 public class Game implements Runnable {
@@ -12,7 +13,7 @@ public class Game implements Runnable {
 	public static boolean running = false;
 	public static Thread thread;
 
-	public int width = Reference.GameNames.width, height = Reference.GameNames.height;
+	private int width = Reference.GameNames.width, height = Reference.GameNames.height;
 
 	public static void main(String[] args) {
 		new Game();
@@ -20,7 +21,7 @@ public class Game implements Runnable {
 
 	public Game() {
 		thread = new Thread(this, Reference.GameNames.gameName);
-		new Window(Reference.GameNames.title, Reference.GameNames.width, Reference.GameNames.height);
+		new Window(Reference.GameNames.title, width, height);
 		start();
 	}
 
@@ -80,8 +81,7 @@ public class Game implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-
-		g.drawImage(Texture.getTexture("/textures/basic.png", 200, 200), 50, 50, null);
+		g.drawImage(Texture.getTexture("/textures/basic.png", width, height), 0, 0, null);
 
 		g.dispose();
 		bs.show();

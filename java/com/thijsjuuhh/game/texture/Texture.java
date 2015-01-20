@@ -10,16 +10,16 @@ public class Texture {
 
 	public static Image getTexture(String url, int width, int height) {
 		Image i = null;
+		Image img = null;
 		try {
 			i = ImageIO.read(Texture.class.getResource(url));
 
-			int scaleX = width / i.getWidth(null);
-			int scaleY = height / i.getHeight(null);
+			img = i.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
 		} catch (IOException e) {
-			System.out.println("File " + url + "not found!");
+			System.out.println("File " + url + " not found!");
 		}
-		return i;
+		return img;
 	}
 
 	public static Image getTexture(String url) {
@@ -28,7 +28,7 @@ public class Texture {
 			i = ImageIO.read(Texture.class.getResource(url));
 			System.out.println("Texture found");
 		} catch (IOException e) {
-			System.out.println("File " + url + "not found!");
+			System.out.println("File " + url + " not found!");
 		}
 		return i;
 	}

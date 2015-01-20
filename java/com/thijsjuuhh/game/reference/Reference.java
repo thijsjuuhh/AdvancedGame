@@ -1,4 +1,4 @@
-package com.thijsjuuhh.game;
+package com.thijsjuuhh.game.reference;
 
 public final class Reference {
 	public class GameNames {
