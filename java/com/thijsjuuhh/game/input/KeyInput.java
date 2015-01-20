@@ -3,9 +3,7 @@ package com.thijsjuuhh.game.input;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.thijsjuuhh.game.entity.GameObject;
 import com.thijsjuuhh.game.entity.Handler;
-import com.thijsjuuhh.game.entity.ID;
 
 public class KeyInput extends KeyAdapter {
 
@@ -14,37 +12,37 @@ public class KeyInput extends KeyAdapter {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		switch (key) {
+		switch(key) {
 		case KeyEvent.VK_W:
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject to = handler.object.get(i);
-				if (to.getId() == ID.Player)
-					to.velY -= 5;
-			}
-			break;
-		case KeyEvent.VK_S:
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject to = handler.object.get(i);
-				if (to.getId() == ID.Player)
-					to.velX += 5;
-			}
+			Keys.w = true;
 			break;
 		case KeyEvent.VK_A:
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject to = handler.object.get(i);
-				if (to.getId() == ID.Player)
-					to.velY += 5;
-
-			}
+			Keys.a = true;
+			break;
+		case KeyEvent.VK_S:
+			Keys.s = true;
 			break;
 		case KeyEvent.VK_D:
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject to = handler.object.get(i);
-				if (to.getId() == ID.Player)
-					to.velX -= 5;
-			}
+			Keys.d = true;
 			break;
-
+		}
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+		switch(key) {
+		case KeyEvent.VK_W:
+			Keys.w = false;
+			break;
+		case KeyEvent.VK_A:
+			Keys.a = false;
+			break;
+		case KeyEvent.VK_S:
+			Keys.s = false;
+			break;
+		case KeyEvent.VK_D:
+			Keys.d = false;
+			break;
 		}
 	}
 }
