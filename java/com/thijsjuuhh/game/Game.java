@@ -90,7 +90,7 @@ public class Game implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-		g.drawImage(Texture.getTexture("/textures/background.png", width, height), 0, 0, null);
+		g.drawImage(Texture.getTexture("/resources/textures/background.png", width, height), 0, 0, null);
 		handler.render(g);
 
 		g.dispose();

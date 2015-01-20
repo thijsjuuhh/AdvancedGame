@@ -44,7 +44,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Texture.getTexture("/textures/player.png", 20, 20), x, y, null);
+		//g.drawImage(Texture.getTexture("/textures/player.png", 20, 20), x, y, null);
 	}
 
 }
