@@ -13,6 +13,9 @@ public class Texture {
 		try {
 			i = ImageIO.read(Texture.class.getResource(url));
 
+			int scaleX = width / i.getWidth(null);
+			int scaleY = height / i.getHeight(null);
+
 		} catch (IOException e) {
 			System.out.println("File " + url + "not found!");
 		}

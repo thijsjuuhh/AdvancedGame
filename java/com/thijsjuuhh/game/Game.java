@@ -81,7 +81,7 @@ public class Game implements Runnable {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
 
-		g.drawImage(Texture.getTexture("/textures/basic.png"), 0, 0, null);
+		g.drawImage(Texture.getTexture("/textures/basic.png", 200, 200), 50, 50, null);
 
 		g.dispose();
 		bs.show();
