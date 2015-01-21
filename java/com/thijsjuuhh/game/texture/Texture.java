@@ -1,7 +1,6 @@
 package com.thijsjuuhh.game.texture;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -9,24 +8,36 @@ import javax.imageio.ImageIO;
 public class Texture {
 	public static BufferedImage getTexture(String url) {
 		BufferedImage img = null;
-		File file = new File(url);
 		try {
-			img = ImageIO.read(file);
-			
-		} catch (IOException e) {
+			img = ImageIO.read(Texture.class.getResource("/textures/noTexture.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			img = ImageIO.read(Texture.class.getResource(url));
+		} catch (Exception e) {
 			System.out.println("img not found");
-			System.out.println(file.getAbsolutePath());
+			try {
+				img = ImageIO.read(Texture.class.getResource("/textures/noTexture.png"));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
 		}
 		return img;
 	}
+
 	public static BufferedImage getTexture(String url, int width, int height) {
 		BufferedImage img = null;
-		File file = new File(url);
 		try {
-			img = ImageIO.read(file);
-		} catch (IOException e) {
+			img = ImageIO.read(Texture.class.getResource(url));
+		} catch (Exception e) {
 			System.out.println("img not found");
-			System.out.println(file.getAbsolutePath());
+			try {
+				img = ImageIO.read(Texture.class.getResource("/textures/noTexture.png"));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 		return img;
 	}
